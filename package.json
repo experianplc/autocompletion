@@ -1,0 +1,29 @@
+{
+  "name": "autocompletion",
+  "version": "1.0.0",
+  "description": "A completion suggestor, written in TypeScript. ",
+  "main": "autocompletion.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/experianplc/autocompletion.git"
+  },
+  "keywords": [
+    "autocomplete",
+    "suggestion",
+    "typescript",
+    "type",
+    "ahead"
+  ],
+  "author": "Experian | Tabeth Nkangoh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/experianplc/autocompletion/issues"
+  },
+  "homepage": "https://github.com/experianplc/autocompletion#readme"
+}

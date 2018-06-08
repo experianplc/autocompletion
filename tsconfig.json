@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "es5",
+      "es2015"
+    ],
+
+    "target": "es5",
+    "module": "commonjs",
+    "checkJs": true,
+    "sourceMap": true,
+    "allowJs": true,
+    "outDir": "lib"
+  },
+
+  "include": [
+    "index.ts",
+    "./src/**/*",
+    "./test/**/*"
+  ],
+  "skipLibCheck": true,
+
+  "exclude": ["node_modules/**/*"],
+  "compileOnSave": false
+}
