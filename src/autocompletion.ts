@@ -6,21 +6,23 @@
 
 export default (function () {
   function autoComplete(options : AutoCompleteOptions): void {
-    if (!document.querySelector)
+    if (!document.querySelector) {
       return;
+    }
 
     function hasClass(el: HTMLElement, className: string): boolean {
       return el.classList ? el.classList.contains(className) : new RegExp('\\b' + className + '\\b').test(el.className); 
     }
 
-    function addEvent(el, type, handler): void {
-      if (el.attachEvent)
+    function addEvent(el, type: string, handler: (event: any) => void): void {
+      if (el.attachEvent) {
         el.attachEvent('on' + type, handler);
-      else
+      } else {
         el.addEventListener(type, handler);
+      }
     }
 
-    function removeEvent(el, type, handler): void {
+    function removeEvent(el, type: string, handler: (event: any) => void): void {
       // if (el.removeEventListener) not working in IE11
       if (el.detachEvent)
         el.detachEvent('on' + type, handler);
@@ -28,10 +30,13 @@ export default (function () {
         el.removeEventListener(type, handler);
     }
 
-    function live(elClass, event, cb, context): void {
+    function live(className: string,
+      event: string,
+      cb: (e: any) => void,
+      context: SuggestionsContainer): void {
       addEvent(context || document, event, function (e) {
         let found, el = e.target || e.srcElement;
-        while (el && !(found = hasClass(el, elClass)))
+        while (el && !(found = hasClass(el, className)))
           el = el.parentElement;
         if (found)
           cb.call(el, e);
@@ -108,24 +113,28 @@ export default (function () {
       };
       addEvent(window, 'resize', autoCompleteElement.updateSC);
       document.body.appendChild(autoCompleteElement.suggestionsContainer);
-      live('edq-global-intuitive-address-suggestion', 'mouseleave', function (e) {
+
+      live('edq-global-intuitive-address-suggestion', 'mouseleave', function() {
         let sel = autoCompleteElement.suggestionsContainer.querySelector('.edq-global-intuitive-address-suggestion.selected');
         if (sel)
           setTimeout(function () { sel.className = sel.className.replace('selected', ''); }, 20);
       }, autoCompleteElement.suggestionsContainer);
-      live('edq-global-intuitive-address-suggestion', 'mouseover', function (e) {
+
+      live('edq-global-intuitive-address-suggestion', 'mouseover', function() {
         let sel = autoCompleteElement.suggestionsContainer.querySelector('.edq-global-intuitive-address-suggestion.selected');
         if (sel)
           sel.className = sel.className.replace('selected', '');
         this.className += ' selected';
       }, autoCompleteElement.suggestionsContainer);
-      live('edq-global-intuitive-address-suggestion', 'mousedown', function (e) {
+
+      live('edq-global-intuitive-address-suggestion', 'mousedown', function(e) {
         if (hasClass(this, 'edq-global-intuitive-address-suggestion')) {
           let v = this.getAttribute('data-format');
           o.onSelect(e, v, this);
           autoCompleteElement.suggestionsContainer.style.display = 'none';
         }
       }, autoCompleteElement.suggestionsContainer);
+
       autoCompleteElement.blurHandler = function () {
         let over_sb;
         try {

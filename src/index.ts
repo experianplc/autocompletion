@@ -21,10 +21,10 @@ class AutoCompleteElement extends HTMLElement {
   focusHandler: (event) => void;
   keyupHandler: (event) => void;
   onclick: (event) => void;
-  blurHandler: object;
-  keydownHandler: object;
-  timer?: any;
-  source?: () => any
+  blurHandler: () => void;
+  keydownHandler: (any) => boolean;
+  timer?: number;
+  source?: (value: string, suggestion: number) => any
 }
 
 interface AutoCompleteOptions extends Object {
