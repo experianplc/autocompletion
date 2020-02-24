@@ -1,6 +1,6 @@
 {
   "name": "autocompletion",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A completion suggestor, written in TypeScript. ",
   "main": "autocompletion.js",
   "directories": {

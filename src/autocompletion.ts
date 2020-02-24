@@ -52,6 +52,7 @@ export default (function () {
       offsetTop: 1,
       cache: 1,
       menuClass: '',
+      dontUseOffset: false,
       renderItem: function (item, search) {
         // Special characters should be escaped.
         search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
@@ -83,8 +84,16 @@ export default (function () {
 
       autoCompleteElement.updateSC = function (resize: boolean, next: AutoCompleteElement): void {
         let rect : DOMRect | ClientRect  = autoCompleteElement.getBoundingClientRect();
-        autoCompleteElement.suggestionsContainer.style.left = Math.round(rect.left + (window.pageXOffset || document.documentElement.scrollLeft) + o.offsetLeft) + 'px';
-        autoCompleteElement.suggestionsContainer.style.top = Math.round(rect.bottom + (window.pageYOffset || document.documentElement.scrollTop) + o.offsetTop) + 'px';
+
+        // Eventually this should be removed, but specifically for a modal this should be enabled
+        // to prevent the suggestions from moving while you scroll
+        if (o.dontUseOffset) {
+          autoCompleteElement.suggestionsContainer.style.left = Math.round(rect.left + o.offsetLeft) + 'px';
+          autoCompleteElement.suggestionsContainer.style.top = Math.round(rect.bottom + o.offsetTop) + 'px';
+        } else {
+          autoCompleteElement.suggestionsContainer.style.left = Math.round(rect.left + (window.pageXOffset || document.documentElement.scrollLeft) + o.offsetLeft) + 'px';
+          autoCompleteElement.suggestionsContainer.style.top = Math.round(rect.bottom + (window.pageYOffset || document.documentElement.scrollTop) + o.offsetTop) + 'px';
+        }
         autoCompleteElement.suggestionsContainer.style.width = Math.round(rect.right - rect.left) + 'px';
 
         if (!resize) {

@@ -38,5 +38,6 @@ interface AutoCompleteOptions extends Object {
   menuClass?: string;
   renderItem?: (item: any, searchTerm: string) => string;
   onSelect?: (e, term, item) => void;
+  dontUseOffset: boolean;
 }
 
