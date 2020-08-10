@@ -25,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/experianplc/autocompletion/issues"
   },
-  "homepage": "https://github.com/experianplc/autocompletion#readme"
+  "homepage": "https://github.com/experianplc/autocompletion#readme",
+  "devDependencies": {
+    "typescript": "^3.9.7"
+  }
 }

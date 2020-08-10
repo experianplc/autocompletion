@@ -39,5 +39,6 @@ interface AutoCompleteOptions extends Object {
   renderItem?: (item: any, searchTerm: string) => string;
   onSelect?: (e, term, item) => void;
   dontUseOffset: boolean;
+  appendToBody: boolean;
 }
 
