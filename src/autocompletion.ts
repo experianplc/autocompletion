@@ -50,7 +50,7 @@ export default (function () {
       delay: 150,
       offsetLeft: 0,
       offsetTop: 1,
-      cache: 1,
+      cache: 0,
       appendToBody: true,
       menuClass: '',
       dontUseOffset: false,
@@ -62,6 +62,10 @@ export default (function () {
       },
       onSelect: function (e, term, item) { }
     };
+
+    if (window.EdqConfig.AUTOCOMPLETION_SETTINGS) {
+      Object.assign(o, window.EdqConfig.AUTOCOMPLETION_SETTINGS);
+    }
 
     for (let k in options) {
       if (options.hasOwnProperty(k))
